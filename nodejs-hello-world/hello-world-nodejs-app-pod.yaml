@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world-nodejs-app-pod
+  labels:
+    app: hello-world-nodejs-app
+spec:
+  containers:
+    - name: hello-world-nodejs-app
+      image: sdubey321/hello-world-node-app:1.0.0
+      ports:
+        - containerPort: 3000
