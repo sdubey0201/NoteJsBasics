@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world-nodejs-app-with-env-varialbe-pod
+  labels:
+    app: hello-world-nodejs-app-with-env-varialbe
+spec:
+  containers:
+    - name: hello-world-nodejs-app-with-env-varialbe
+      image: sdubey321/hello-world-nodejs-app-with-env-varialbe:1.0.0
+      ports:
+        - containerPort: 3000
+      env:
+        - name: APP_NAME
+          value: "KubernetesPodApp"
+        - name: PORT
+          value: "3000"

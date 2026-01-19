@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-world-nodejs-app-with-env-varialbe
+  name: hello-world-nodejs-app-with-env-varialbe-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world-nodejs-app-with-env-varialbe
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-world-nodejs-app-with-env-varialbe
+      name: hello-world-nodejs-app-with-env-varialbe
+    spec:
+      containers:
+        - image: sdubey321/hello-world-nodejs-app-with-env-varialbe:1.0.0
+          name: hello-world-nodejs-app-with-env-varialbe
+          ports:
+            - containerPort: 3000
+          env:
+            - name: APP_NAME
+              value: "KubernetesDeploymentApp"
+            - name: PORT
+              value: "3000"
