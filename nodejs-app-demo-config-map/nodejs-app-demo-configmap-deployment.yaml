@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nodejs-app-demo-configmap
+  name: nodejs-app-demo-config-map-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs-app-demo-configmap
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs-app-demo-configmap
+      name: nodejs-app-demo-configmap
+    spec:
+      containers:
+        - image: sdubey321/nodejs-app-demo-configmap:1.0.0
+          name: nodejs-app-demo-configmap
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: nodejs-app-demo-config-configmap2
