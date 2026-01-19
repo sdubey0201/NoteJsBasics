@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-world-nodejs-app
+  name: hello-world-nodejs-app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-world-nodejs-app
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-world-nodejs-app
+    spec:
+      containers:
+        - image: sdubey321/hello-world-node-app:1.0.0
+          name: hello-world-node-app
+          ports:
+            - containerPort: 3000
