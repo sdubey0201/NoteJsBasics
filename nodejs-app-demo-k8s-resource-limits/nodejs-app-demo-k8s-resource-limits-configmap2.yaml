@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  APP_NAME: nodejs-app-demo-k8s-resource-limits
+  PORT: "3000"
+  CONFIGMAP1: "getting form configmap1 form nodejs-app-demo-k8s-resource-limits-configmap2"
+  CONFIGMAP2: "getting form configmap2 from nodejs-app-demo-k8s-resource-limits-configmap2"
+kind: ConfigMap
+metadata:
+  name: nodejs-app-demo-k8s-resource-limits-configmap2
+  labels:
+    app: nodejs-app-demo-k8s-resource-limits

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nodejs-app-demo-k8s-resource-limits
+  name: nodejs-app-demo-k8s-resource-limits-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-app-demo-k8s-resource-limits
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs-app-demo-k8s-resource-limits
+      name: nodejs-app-demo-k8s-resource-limits
+    spec:
+      imagePullSecrets:
+        - name: sample-docker-secret
+      containers:
+        - image: sdubey321/sdubey321-private-repo:1.1.0
+          name: nodejs-app-demo-k8s-resource-limits
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: nodejs-app-demo-k8s-resource-limits-configmap2
+          env:
+            - name: DB_PASSWORD_NODE_DEMO
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: nodejs-app-demo-k8s-resource-limits-secret
