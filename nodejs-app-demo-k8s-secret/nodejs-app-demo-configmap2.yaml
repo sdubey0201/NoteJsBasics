@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  APP_NAME: nodejs-app-demo-configmap
+  PORT: "3000"
+  CONFIGMAP1: "getting form configmap1"
+  CONFIGMAP2: "getting form configmap2"
+kind: ConfigMap
+metadata:
+  name: nodejs-app-demo-config-configmap2
+  labels:
+    app: nodejs-app-demo-configmap
