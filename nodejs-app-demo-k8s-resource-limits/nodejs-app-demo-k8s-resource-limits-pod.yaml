@@ -38,3 +38,10 @@ spec:
             configMapKeyRef:
               key: CONFIGMAP2_FROM_CONFIGMAP
               name: nodejs-app-demo-k8s-resource-limits-configmap
+      resources:
+        requests:
+          cpu: "1"
+          memory: 50Mi
+        limits:
+          cpu: "2"
+          memory: 100Mi
