@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: k8s-pv-demo
+  name: k8s-pv-demo-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: k8s-pv-demo
+  template:
+    metadata:
+      labels:
+        app: k8s-pv-demo
+      name: k8s-pv-demo
+    spec:
+      # imagePullSecrets:
+      #   - name: sample-docker-secret
+      containers:
+        - image: sdubey321/k8s-pv-demo:1.0.0
+          name: k8s-pv-demo
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: k8s-pv-demo-configmap
+          env:
+            - name: DB_PASSWORD_NODE_DEMO
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: k8s-pv-demo-secret
+            - name: KEY1
+              valueFrom:
+                secretKeyRef:
+                  key: key1
+                  name: k8s-pv-demo-secret
+            - name: KEY2
+              valueFrom:
+                secretKeyRef:
+                  key: key2
+                  name: k8s-pv-demo-secret
+          resources:
+            requests:
+              cpu: "100m"
+            limits:
+              cpu: "200m"
+          volumeMounts:
+            - mountPath: /usr/share
+              name: k8s-pv-demo-volumes
+      volumes:
+       - name: k8s-pv-demo-volumes
+         emptyDir: {}
+
