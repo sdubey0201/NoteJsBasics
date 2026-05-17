@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  APP_NAME_FORM_CONFIGMAP: nodejs-app-demo-k8s-PV
+  PORT_FROM_CONFIGMAP: "3000"
+  CONFIGMAP1_FROM_CONFIGMAP: "getting form configmap1 of k8s-pv-demo-configmap"
+  CONFIGMAP2_FROM_CONFIGMAP: "getting form configmap2 of k8s-pv-demo-configmap"
+kind: ConfigMap
+metadata:
+  name: k8s-pv-demo-configmap
+  labels:
+    app: k8s-pv-demo
